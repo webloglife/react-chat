@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -12,13 +12,11 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link
-        color="inherit"
-        href="https://twitter.com/diveintohacking"
-        target="_blank"
-        rel="noopener"
+      <Link color="inherit" href="https://twitter.com/weblog_life"
+      target="_blank"
+      rel="noopener"
       >
-        はむさん
+        Webloglife
       </Link>
     </Typography>
   );
@@ -44,16 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ setName }) {
+export default function SignIn() {
   const classes = useStyles();
-  const [disabled, setDisabled] = useState(true);
-  const [string, setString] = useState('');
-  const [isComposed, setIsComposed] = useState(false);
-
-  useEffect(() => {
-    const disabled = string === '';
-    setDisabled(disabled);
-  }, [string]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -72,28 +62,14 @@ export default function SignIn({ setName }) {
             label="ニックネーム"
             name="name"
             autoFocus
-            onChange={(e) => setString(e.target.value)}
-            onKeyDown={(e) => {
-              if (isComposed) return;
-
-              if (e.key === 'Enter') {
-                setName(e.target.value);
-                e.preventDefault();
-              }
-            }}
-            onCompositionStart={() => setIsComposed(true)}
-            onCompositionEnd={() => setIsComposed(false)}
           />
+          
           <Button
-            type="button"
+            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={disabled}
-            onClick={() => {
-              setName(string);
-            }}
           >
             はじめる
           </Button>
